@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import { DatePicker } from 'antd';
 import logo from './logo.svg';
 import appLogo from './WMK.png'
-import './App.css';
-import { Tabs } from 'antd';
-import * as firebase from 'firebase';
-import { Row, Col } from 'antd';
-import { Table, Steps } from 'antd';
-import { Button, Radio, Icon, Progress, Slider, Card, Spin } from 'antd';
-import  Test  from './components/test';
-
+import './css/App.css';
+import { Button, Radio, Icon, Progress, Slider, Card, Spin, Table, Steps, Row, Col, Tabs } from 'antd';
+import Test from './components/test';
+import Question from './components/question';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -18,73 +14,13 @@ const TabPane = Tabs.TabPane;
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      speed: 10,
-      current: 0,
-      questions: [],
-    }
-
-  }
-
-  componentDidMount() {
-    const rootRef = firebase.database().ref('question/people1/text');
-
-    rootRef.on('value', snap => {
-      this.setState(
-        {
-          speed: snap.val()
-        }
-      );
-    });
-
-    this.state.questions.map(question => <li key={question.id}>{question.attr.id}</li>)
-    console.log("Mount >> " + this.state.questions);
-
-    //    fire.database().ref('messages').push( this.inputEl.value );
-
-  }
-
-  componentWillMount() {
-
-    let questionref = firebase.database().ref('question').orderByKey().limitToLast(100);
-    questionref.on('child_added', snapshot => {
-      /* Update React state when message is added at Firebase Database */
-      let question =
-        {
-          attr: snapshot.val(),
-          id: snapshot.key
-        };
-
-      this.setState({ questions: [question].concat(this.state.questions) });
-      console.log(this.state.questions);
-    })
-
-  }
-
-
-
 
   render() {
 
-    const radioStyle = {
-      display: 'block',
-      height: '40px',
-      lineHeight: '20px',
-    };
-
-    const CardStyle =
-      {
-        background: '#000000',
-        color: '#ffffff'
-      };
-
+    const radioStyle = { display: 'block', height: '40px', lineHeight: '20px',};
+    const CardStyle = { background: '#000000', color: '#ffffff'};
     const progressstyle = { color: '#000000', background: '#ffffff' };
-
     const tab1Style = { background: '#ffffff', padding: '30px', color: '#000000' };
-
     const tabStyle = { background: '#000000', color: '#ffffff' };
 
     return (
@@ -94,7 +30,6 @@ class App extends Component {
         <div className="App-header">
           <img size="small" src={appLogo} className="App-logo" alt="logo" />
           <h2 className="header-text" >Wellness MasterKeys</h2>
-      <Test/>
 
         </div>
         <Tabs style={tabStyle} defaultActiveKey="1" >
@@ -170,18 +105,14 @@ class App extends Component {
 
           </TabPane>
           <TabPane tab="Tab 2" key="2">
+            <Question/>
             <Card>
               <img src={appLogo} className="App LOGO" alt="Wellness MasterKeys" />
             </Card>
 
           </TabPane>
-
-
-
-
           <TabPane tab="Tab 3" key="3">
-            Questionnaire 3
-             <div> {this.state.speed} </div>
+            <Test />
 
           </TabPane>
         </Tabs>
