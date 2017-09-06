@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import question1 from './views/question1';
 import registerServiceWorker from './registerServiceWorker';
 import 'antd/dist/antd.css';
 import * as firebase from 'firebase';
@@ -17,4 +18,6 @@ import * as firebase from 'firebase';
   firebase.initializeApp(config);
 
 ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<question1 />, document.getElementById('root2'));
+
 registerServiceWorker();

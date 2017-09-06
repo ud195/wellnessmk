@@ -9,13 +9,13 @@
 }
 
 .App-header {
-  background-color: #003366;
+  background-color: white;
   height: 150px;
   padding: 20px;
 }
 
 .header-text {
-  color: white;
+  color: black;
 }
 
 .App-intro {
@@ -24,9 +24,15 @@
 }
 .card-text {
   color: white;
+  text-align: left;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.row-text{
+  text-align: 'center';
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
+  from { transform: rotate(0deg);  }
   to { transform: rotate(360deg); }
 }

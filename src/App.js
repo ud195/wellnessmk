@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { DatePicker } from 'antd';
 import logo from './logo.svg';
-import appLogo from './WMK_LOGO.png'
+import appLogo from './WMK.png'
 import './App.css';
 import { Tabs } from 'antd';
 import * as firebase from 'firebase';
 import { Row, Col } from 'antd';
 import { Table, Steps } from 'antd';
-import { Button, Radio, Icon, Progress, Card, Spin } from 'antd';
+import { Button, Radio, Icon, Progress, Slider, Card, Spin } from 'antd';
+import  Test  from './components/test';
+
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -16,25 +18,49 @@ const TabPane = Tabs.TabPane;
 
 class App extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
       speed: 10,
-      current: 0
-
+      current: 0,
+      questions: [],
     }
+
   }
 
   componentDidMount() {
-    const rootRef = firebase.database().ref('speed');
+    const rootRef = firebase.database().ref('question/people1/text');
 
-    rootRef.on('child_added', snap => {
+    rootRef.on('value', snap => {
       this.setState(
         {
           speed: snap.val()
         }
       );
     });
+
+    this.state.questions.map(question => <li key={question.id}>{question.attr.id}</li>)
+    console.log("Mount >> " + this.state.questions);
+
+    //    fire.database().ref('messages').push( this.inputEl.value );
+
+  }
+
+  componentWillMount() {
+
+    let questionref = firebase.database().ref('question').orderByKey().limitToLast(100);
+    questionref.on('child_added', snapshot => {
+      /* Update React state when message is added at Firebase Database */
+      let question =
+        {
+          attr: snapshot.val(),
+          id: snapshot.key
+        };
+
+      this.setState({ questions: [question].concat(this.state.questions) });
+      console.log(this.state.questions);
+    })
 
   }
 
@@ -43,36 +69,42 @@ class App extends Component {
 
   render() {
 
-    const radioStyle = {    display: 'block',
+    const radioStyle = {
+      display: 'block',
       height: '40px',
       lineHeight: '20px',
     };
 
     const CardStyle =
       {
-        background: '#003366',
+        background: '#000000',
+        color: '#ffffff'
       };
 
+    const progressstyle = { color: '#000000', background: '#ffffff' };
 
+    const tab1Style = { background: '#ffffff', padding: '30px', color: '#000000' };
+
+    const tabStyle = { background: '#000000', color: '#ffffff' };
 
     return (
 
       <div className="App">
 
         <div className="App-header">
-          <img size="small" src={logo} className="App-logo" alt="logo" />
+          <img size="small" src={appLogo} className="App-logo" alt="logo" />
           <h2 className="header-text" >Wellness MasterKeys</h2>
+      <Test/>
+
         </div>
-
-        <Tabs defaultActiveKey="1" >
-          <TabPane tab="Test 1 " key="1">
-
+        <Tabs style={tabStyle} defaultActiveKey="1" >
+          <TabPane style={tab1Style} tab="Test 1 " key="1">
             <Row>
               <Col span={4}></Col>
               <Col span={14}>
-                  <Progress percent={10} status="active" />
+                <Progress style={progressstyle} percent={10} status="active" />
               </Col>
-              <Col span={4}><Spin/></Col>
+              <Col span={4}><Spin /></Col>
             </Row>
 
             <div style={{ marginTop: 30 }}>
@@ -87,7 +119,7 @@ class App extends Component {
 
                     <Row>
                       <Col span={1}>
-                        <Radio style={radioStyle} value="a"></Radio>
+                        <Radio style={radioStyle} value={5}></Radio>
                       </Col>
                       <Col span={15}>
                         <h4 className="card-text"> very affected emotionally </h4>
@@ -139,6 +171,7 @@ class App extends Component {
           </TabPane>
           <TabPane tab="Tab 2" key="2">
             <Card>
+              <img src={appLogo} className="App LOGO" alt="Wellness MasterKeys" />
             </Card>
 
           </TabPane>
@@ -150,7 +183,6 @@ class App extends Component {
             Questionnaire 3
              <div> {this.state.speed} </div>
 
-            <img src={appLogo} className="App LOGO" alt="Wellness MasterKeys" />
           </TabPane>
         </Tabs>
       </div>
