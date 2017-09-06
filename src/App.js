@@ -3,7 +3,7 @@ import { DatePicker } from 'antd';
 import logo from './logo.svg';
 import appLogo from './WMK.png'
 import './css/App.css';
-import { Button, Radio, Icon, Progress, Slider, Card, Spin, Table, Steps, Row, Col, Tabs } from 'antd';
+import { Button, Rate, Radio, Icon, Progress, Slider, Card, Spin, Table, Steps, Row, Col, Tabs } from 'antd';
 import Test from './components/test';
 import Question from './components/question';
 
@@ -17,8 +17,8 @@ class App extends Component {
 
   render() {
 
-    const radioStyle = { display: 'block', height: '40px', lineHeight: '20px',};
-    const CardStyle = { background: '#000000', color: '#ffffff'};
+    const radioStyle = { display: 'block', height: '40px', lineHeight: '20px', };
+    const CardStyle = { background: '#000000', color: '#ffffff' };
     const progressstyle = { color: '#000000', background: '#ffffff' };
     const tab1Style = { background: '#ffffff', padding: '30px', color: '#000000' };
     const tabStyle = { background: '#000000', color: '#ffffff' };
@@ -47,6 +47,10 @@ class App extends Component {
               <Row>
                 <Col span={2}></Col>
                 <Col span={20}>
+                <div style={{marginBottom: 15}}>
+                <h3> How are you feeling today ? </h3>
+                <Rate character={<Icon type="smile-o" />} allowHalf  defaultValue={1.5} style={{ fontSize: 36 }} />
+                </div>
 
                   <Card title="How affected are you when you watch an emotional movie ?"
                     extra={<Button type="primary" icon="forward" size="small">Next</Button>} style={CardStyle}>
@@ -104,16 +108,15 @@ class App extends Component {
             </div>
 
           </TabPane>
-          <TabPane tab="Tab 2" key="2">
-            <Question/>
-            <Card>
-              <img src={appLogo} className="App LOGO" alt="Wellness MasterKeys" />
-            </Card>
+          <TabPane style={tab1Style} tab="Tab 2" key="2">
+            <Question />
+
 
           </TabPane>
           <TabPane tab="Tab 3" key="3">
-            <Test />
-
+            <Card>
+              <img src={appLogo} className="App LOGO" alt="Wellness MasterKeys" />
+            </Card>
           </TabPane>
         </Tabs>
       </div>
