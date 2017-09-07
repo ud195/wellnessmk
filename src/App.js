@@ -6,7 +6,7 @@ import './css/App.css';
 import { Button, Rate, Radio, Icon, Progress, Slider, Card, Spin, Table, Steps, Row, Col, Tabs } from 'antd';
 import Test from './components/test';
 import Question from './components/question';
-
+import QuestionsAPI from './components/questionapi';
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const Step = Steps.Step;
@@ -30,10 +30,11 @@ class App extends Component {
         <div className="App-header">
           <img size="small" src={appLogo} className="App-logo" alt="logo" />
           <h2 className="header-text" >Wellness MasterKeys</h2>
-
         </div>
+
         <Tabs style={tabStyle} defaultActiveKey="1" >
-          <TabPane style={tab1Style} tab="Test 1 " key="1">
+        
+          <TabPane style={tab1Style} tab="Samples" key="1">
             <Row>
               <Col span={4}></Col>
               <Col span={14}>
@@ -41,7 +42,6 @@ class App extends Component {
               </Col>
               <Col span={4}><Spin /></Col>
             </Row>
-
             <div style={{ marginTop: 30 }}>
 
               <Row>
@@ -106,18 +106,16 @@ class App extends Component {
 
 
             </div>
-
           </TabPane>
-          <TabPane style={tab1Style} tab="Tab 2" key="2">
+
+          <TabPane style={tab1Style} tab="Dynamic Display" key="2">
             <Question />
-
-
           </TabPane>
-          <TabPane tab="Tab 3" key="3">
-            <Card>
-              <img src={appLogo} className="App LOGO" alt="Wellness MasterKeys" />
-            </Card>
+
+          <TabPane tab="Admin Options" key="3" style={tab1Style}>
+            <QuestionsAPI/>
           </TabPane>
+
         </Tabs>
       </div>
     );

@@ -1,0 +1,15 @@
+.text {
+    color: white;
+    background-color: #003366;
+
+}
+
+.card-text {
+  color: white;
+  text-align: left;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.row-text{
+  text-align: 'center';
+}

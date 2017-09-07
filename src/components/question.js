@@ -13,7 +13,8 @@ export default class question extends React.Component {
 
         this.state = {
             questions: [],
-            score: null
+            score: null,
+            loading: true
         }
 
     }
@@ -41,6 +42,7 @@ export default class question extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({loading: false});
         console.log(this.state.questions);
     }
 
@@ -53,12 +55,14 @@ export default class question extends React.Component {
 
             <div className='empty'>
                 <h1 className='text'>  Optimal Level Test  </h1>
+                <div style={{marginTop: 15, marginBottom: 15}}>
+                <Spin size="large" spinning={this.state.loading}/>
+                </div>
                 <ul>
                     {
                         this.state.questions.map(question =>
-
-                            <div style={{ marginTop: 30 }}>
                                 <div key={question.id}>
+                            <div style={{ marginTop: 30 }}>
                                     <Row>
                                         <Col span={2}></Col>
                                         <Col span={20}>
