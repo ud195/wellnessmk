@@ -38,12 +38,18 @@ export default class question extends React.Component {
             this.setState({ questions: [question].concat(this.state.questions) });
         })
 
-        console.log(this.state);
+        console.log(this.state+ "DB Mounted");
     }
 
     componentDidMount() {
         this.setState({loading: false});
         console.log(this.state.questions);
+    }
+    
+    componentWillUnmount()
+    {
+        this.DBRef.off();
+        console.log("unmounted DB");
     }
 
     render() {
@@ -72,10 +78,12 @@ export default class question extends React.Component {
                                                         <Col span={1}>
                                                         <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer1}></Radio>
                                                         </Col>
+                                                        <Col span={1}>
+                                                        </Col>
                                                         <Col span={15}>
                                                             <h4 className="card-text"> {question.answer1} </h4>
                                                         </Col>
-                                                        <Col span={8}>
+                                                        <Col span={7}>
                                                         </Col>
                                                     </Row>
                                                     <Row>
@@ -90,7 +98,7 @@ export default class question extends React.Component {
                                                     </Row>
                                                     <Row>
                                                         <Col span={1}>
-                                                        <Radio style={radioStyle} value={question.valueanswer3}></Radio>
+                                                        <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer3}></Radio>
                                                         </Col>
                                                         <Col span={15}>
                                                             <h4 className="card-text"> {question.answer3} </h4>
@@ -100,7 +108,7 @@ export default class question extends React.Component {
                                                     </Row>
                                                     <Row>
                                                         <Col span={1}>
-                                                        <Radio style={radioStyle} value={question.valueanswer4}></Radio>
+                                                        <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer4}></Radio>
                                                         </Col>
                                                         <Col span={15}>
                                                             <h4 className="card-text"> {question.answer4} </h4>
@@ -110,7 +118,7 @@ export default class question extends React.Component {
                                                     </Row>
                                                     <Row>
                                                         <Col span={1}>
-                                                        <Radio style={radioStyle} value={question.valueanswer5}></Radio>
+                                                        <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer5}></Radio>
                                                         </Col>
                                                         <Col span={15}>
                                                             <h4 className="card-text"> {question.answer5} </h4>

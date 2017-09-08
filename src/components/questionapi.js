@@ -46,10 +46,6 @@ export default class questionapi extends React.Component {
         }
     }
 
-    addFire() {
-        console.log(this.state);
-    }
-
     submitForm() {
         // add Firebase binding
         this.questionobj.text = this.state.text;
