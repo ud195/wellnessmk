@@ -19,8 +19,8 @@ export default class question extends React.Component {
 
     }
 
-    radiochanged(event)
-    {
+    radiochanged(event) {
+        this.setState({ score: event.target.value });
         console.log(`radio checked:${event.target.value}`);
     }
 
@@ -38,16 +38,15 @@ export default class question extends React.Component {
             this.setState({ questions: [question].concat(this.state.questions) });
         })
 
-        console.log(this.state+ "DB Mounted");
+        console.log(this.state + "DB Mounted");
     }
 
     componentDidMount() {
-        this.setState({loading: false});
+        this.setState({ loading: false });
         console.log(this.state.questions);
     }
-    
-    componentWillUnmount()
-    {
+
+    componentWillUnmount() {
         this.DBRef.off();
         console.log("unmounted DB");
     }
@@ -61,73 +60,78 @@ export default class question extends React.Component {
 
             <div className='empty'>
                 <h1 className='text'>  Optimal Level Test  </h1>
-                <div style={{marginTop: 15, marginBottom: 15}}>
-                <Spin size="large" spinning={this.state.loading}/>
+                <div style={{ marginTop: 15, marginBottom: 15 }}>
+                    <Spin size="large" spinning={this.state.loading} />
                 </div>
                 <ul>
                     {
                         this.state.questions.map(question =>
-                                <div key={question.id}>
-                            <div style={{ marginTop: 30 }}>
+                            <div key={question.id}>
+                                <div style={{ marginTop: 30 }}>
                                     <Row>
                                         <Col span={2}></Col>
                                         <Col span={20}>
                                             <Card title={question.text}
                                                 extra={<Tag color="#f50">{question.category}</Tag>} style={CardStyle}>
-                                                    <Row>
-                                                        <Col span={1}>
+                                                <Row>
+                                                    <Col span={1}>
                                                         <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer1}></Radio>
-                                                        </Col>
-                                                        <Col span={1}>
-                                                        </Col>
-                                                        <Col span={15}>
-                                                            <h4 className="card-text"> {question.answer1} </h4>
-                                                        </Col>
-                                                        <Col span={7}>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col span={1}>
+                                                    </Col>
+                                                    <Col span={1}>
+                                                    </Col>
+                                                    <Col span={15}>
+                                                        <h4 className="card-text"> {question.answer1} </h4>
+                                                    </Col>
+                                                    <Col span={7}>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col span={1}>
                                                         <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer2}></Radio>
-                                                        </Col>
-                                                        <Col span={15}>
-                                                            <h4 className="card-text"> {question.answer2} </h4>
-                                                        </Col>
-                                                        <Col span={8}>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col span={1}>
+                                                    </Col>                                                        <Col span={1}>
+                                                    </Col>
+                                                    <Col span={15}>
+                                                        <h4 className="card-text"> {question.answer2} </h4>
+                                                    </Col>
+                                                    <Col span={7}>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col span={1}>
                                                         <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer3}></Radio>
-                                                        </Col>
-                                                        <Col span={15}>
-                                                            <h4 className="card-text"> {question.answer3} </h4>
-                                                        </Col>
-                                                        <Col span={8}>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col span={1}>
+                                                    </Col>                                                        <Col span={1}>
+                                                    </Col>
+                                                    <Col span={15}>
+                                                        <h4 className="card-text"> {question.answer3} </h4>
+                                                    </Col>
+                                                    <Col span={7}>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col span={1}>
                                                         <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer4}></Radio>
-                                                        </Col>
-                                                        <Col span={15}>
-                                                            <h4 className="card-text"> {question.answer4} </h4>
-                                                        </Col>
-                                                        <Col span={8}>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col span={1}>
+                                                    </Col>                                                        <Col span={1}>
+                                                    </Col>
+                                                    <Col span={15}>
+                                                        <h4 className="card-text"> {question.answer4} </h4>
+                                                    </Col>
+                                                    <Col span={7}>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col span={1}>
                                                         <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer5}></Radio>
-                                                        </Col>
-                                                        <Col span={15}>
-                                                            <h4 className="card-text"> {question.answer5} </h4>
-                                                        </Col>
-                                                        <Col span={8}>
-                                                        </Col>
-                                                    </Row>
+                                                    </Col>                                                        <Col span={1}>
+                                                    </Col>
+                                                    <Col span={15}>
+                                                        <h4 className="card-text"> {question.answer5} </h4>
+                                                    </Col>
+                                                    <Col span={7}>
+                                                    </Col>
+                                                </Row>
 
                                             </Card>
+                                            {this.state.score}
                                         </Col>
                                     </Row>
                                 </div>

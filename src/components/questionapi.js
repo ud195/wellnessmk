@@ -82,6 +82,7 @@ export default class questionapi extends React.Component {
 
     valueanswer1Change(event) {
         this.setState({ valueanswer1: event.target.value });
+
     }
 
     answer2Change(event) {

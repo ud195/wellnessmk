@@ -10,18 +10,29 @@ export default class mood extends React.Component {
 
     constructor(props) {
         super(props);
-
-
+        const { max, min } = props;
+        const mid = ((max - min) / 2).toFixed(5);
 
         this.state = {
+            mid,
+            sliderValue: this.props.value,
             moods: [],
             score: null,
             loading: true,
             weight: null,
             category: null,
-            recommendation: null
+            recommendation: null,
+            stresslevel: null
         }
 
+    }
+
+    sliderChange(v) {
+        this.setState({
+            sliderValue: v,
+            stresslevel: this.state.sliderValue
+        });
+        console.log("Stress Level : " + this.state.stresslevel);
     }
 
     radiochanged(event) {
@@ -42,6 +53,7 @@ export default class mood extends React.Component {
     }
 
     componentDidMount() {
+
         this.setState({ loading: false });
         console.log(this.state.questions);
     }
@@ -81,6 +93,7 @@ export default class mood extends React.Component {
                         <Col span={20}>
                             <div style={{ marginBottom: 15 }}>
                                 <h3> How agitated or stressed are you?  </h3>
+
                                 <Rate character={<Icon type="frown-o" />} allowHalf defaultValue={1.5} style={{ fontSize: 36 }} />
                             </div>
                         </Col>
