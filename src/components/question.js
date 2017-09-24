@@ -25,9 +25,9 @@ export default class question extends React.Component {
     }
 
     componentWillMount() {
-        let DBRef = firebase.database().ref('question').orderByKey().limitToLast(100);
+        this.DBRef = firebase.database().ref('question').orderByKey().limitToLast(100);
 
-        DBRef.on('child_added', snapshot => {
+        this.DBRef.on('child_added', snapshot => {
             let question = {
                 text: snapshot.val().text, id: snapshot.key, answer1: snapshot.val().answer1,
                 answer2: snapshot.val().answer2, answer3: snapshot.val().answer3, answer4: snapshot.val().answer4,

@@ -13,7 +13,7 @@ import ls from 'local-storage';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
-
+import {Link} from 'react-router-dom';
 
 
 class App extends Component {
@@ -62,6 +62,12 @@ class App extends Component {
     this.setState({name : e.target.value });
   }
 
+  handleClick(e)
+  {
+    e.preventDefault();
+    this.props.history.push('/test');    
+  }
+
   render() {
 
     return (
@@ -77,6 +83,7 @@ class App extends Component {
           <div>
           <div style={{marginTop: 15, marginBottom: 15}}>
             <Divider/>
+            <ul> <li> <Link to='test'>test </Link></li> </ul>
           </div>
           <div>
             {
@@ -86,7 +93,7 @@ class App extends Component {
                <h3 style={{color : ""}}> welcome  {this.state.name} :D</h3>
                <br/>
                <FlatButton label="Nope that's not me" primary={true} onClick={this.clear.bind(this)} />
-               <FlatButton label="Let's get started" secondary = {true} href="/test"/>
+               <FlatButton label="Let's get started" secondary = {true} onClick={this.handleClick.bind(this)}/>
                </div>
 
                : 

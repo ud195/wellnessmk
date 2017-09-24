@@ -27,10 +27,10 @@ import muitheme from './muistyle/maintheme';
 ReactDOM.render(
   <Router history={hashHistory}>
     <div>
-      <Route  path='/' component={App} />
-      <Route   path='/test' component={Question}/>
-      <Route path='/card' component={Cardtest } />
-      <Route path='/result' component={Result} />
+      <Route  path='/' exact={true}  component={App} />
+      <Route  path='/test' component={Question}/>
+      <Route  path='/card' component={Cardtest } />
+      <Route  path='/result' component={Result} />
       <Route  path='/admin' component={QuestionAPI}/>
     </div>
   </Router>
