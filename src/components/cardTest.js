@@ -19,9 +19,9 @@ export default class cardtest extends React.Component {
                 <Row>
                     <Col span={2} />
                     <Col span={20}>
-                    <Card style={{ backgroundColor : green600, color: blue300}}>
+                    <Card style={{  color: blue300}}>
 
-                        <CardTitle  title="How often do you think you should have been to this event when thua ?" subtitle="Reaction to stimuli" />
+                        <CardTitle  title="How often do you think you should have been to this event when this... ?" subtitle="Reaction to stimuli" />
                         <CardText>
                             <Row>
                                 <Col> 

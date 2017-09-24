@@ -59,7 +59,6 @@ export default class question extends React.Component {
         return (
 
             <div className='empty'>
-                <h1 className='text'>  Optimal Level Test  </h1>
                 <div style={{ marginTop: 15, marginBottom: 15 }}>
                     <Spin size="large" spinning={this.state.loading} />
                 </div>

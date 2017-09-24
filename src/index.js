@@ -10,6 +10,7 @@ import Question from './components/question';
 import Cardtest from './components/cardTest';
 import QuestionAPI from './components/questionapi';
 import Result from './components/result';
+import Welcome from './components/welcome';
 import {hashHistory} from 'react-history';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muitheme from './muistyle/maintheme';
@@ -27,8 +28,9 @@ import muitheme from './muistyle/maintheme';
 ReactDOM.render(
   <Router history={hashHistory}>
     <div>
-      <Route  path='/' exact={true}  component={App} />
-      <Route  path='/test' component={Question}/>
+      <Route  path='/'  component={App} />
+      <Route  path='/welcome'  component={Welcome} />
+      <Route  path='/test'   component={Question}/>
       <Route  path='/card' component={Cardtest } />
       <Route  path='/result' component={Result} />
       <Route  path='/admin' component={QuestionAPI}/>
