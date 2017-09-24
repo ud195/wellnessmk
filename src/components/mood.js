@@ -5,6 +5,7 @@ import { Button, Radio, Rate, Icon, Progress, Slider, Card, Tag, Spin, Table, St
 const RadioGroup = Radio.Group;
 const RadioButton = Radio.Button;
 
+
 export default class mood extends React.Component {
 
 
@@ -38,6 +39,8 @@ export default class mood extends React.Component {
     radiochanged(event) {
         console.log(`radio checked:${event.target.value}`);
     }
+
+    
 
     componentWillMount() {
         let DBRef = firebase.database().ref('mood').orderByKey().limitToLast(100);
@@ -110,7 +113,6 @@ export default class mood extends React.Component {
                     }
                 </ul>
             </div>
-
         );
 
     }

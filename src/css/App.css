@@ -8,10 +8,14 @@
   height: 80px;
 }
 
+.App-tag
+{
+ height: 80px;
+}
 .App-header {
   background-color: white;
-  height: 150px;
-  padding: 20px;
+  height: 180px;
+  padding: 25px;
 }
 
 .header-text {
