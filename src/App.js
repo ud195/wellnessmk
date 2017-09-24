@@ -6,13 +6,13 @@ import './css/App.css';
 import Home from './components/home';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muitheme from './muistyle/maintheme';
-import Divider from 'material-ui/Divider'
 import Mood from './components/mood';
 import Question from './components/question';
 import QuestionAPI from './components/questionapi';
 import ls from 'local-storage';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import Divider from 'material-ui/Divider';
 
 
 
