@@ -5,7 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import 'antd/dist/antd.css';
 import * as firebase from 'firebase';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import Question from './components/question';
 import Cardtest from './components/cardTest';
 import QuestionAPI from './components/questionapi';
@@ -29,6 +29,7 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <div>
       <Route  path='/'  component={App} />
+      <Redirect to='/welcome'/>
       <Route  path='/welcome'  component={Welcome} />
       <Route  path='/test'   component={Question}/>
       <Route  path='/card' component={Cardtest } />

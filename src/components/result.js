@@ -52,8 +52,8 @@ export default class result extends React.Component {
             <div>
                 <MuiThemeProvider muiTheme={muitheme}>
                 <Row>
-                    <Col span={2} />
-                    <Col span={20}>
+                    <Col span={6} />
+                    <Col span={12}>
                     <Card>
                         <Row>
                             <Col span={1}/>
@@ -78,7 +78,7 @@ export default class result extends React.Component {
                          </Row>
                     </Card>
                     </Col>
-                    <Col span={2}/>
+                    <Col span={6}/>
                 </Row>
                 </MuiThemeProvider >
               </div>
