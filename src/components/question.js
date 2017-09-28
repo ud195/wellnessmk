@@ -27,6 +27,7 @@ export default class question extends React.Component {
             radio2: null,
             radio3: null,
             radio4: null,
+            currentQuestiom : null,
             radio5: null,
             scores : []
         }

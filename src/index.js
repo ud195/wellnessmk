@@ -28,6 +28,7 @@ import muitheme from './muistyle/maintheme';
 ReactDOM.render(
   <Router history={hashHistory}>
     <div>
+      <Redirect from='/' to='/welcome'/>
       <Route  path='/'  component={App} />
       <Route  path='/welcome'  component={Welcome} />
       <Route  path='/test'   component={Question}/>
