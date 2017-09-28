@@ -137,33 +137,33 @@ export default class question extends React.Component {
                                                         <RadioButtonGroup name="shipSpeed" defaultSelected="not-selected"
                                                         onChange={this.radio1changed.bind(this)}>
                                                             <RadioButton
-                                                                value="-10"
-                                                                label="answer 1"
+                                                                value={question.valueanswer1}
+                                                                label={question.answer1}
                                                                 checkedIcon={<ActionFavorite style={{color: "#F44336"}} />}
                                                             />
                                                             <RadioButton
                                                             onChange={this.radio2changed.bind(this)}
-                                                                value="-5"
-                                                                label="answer 2"
+                                                                value={question.valueanswer2}
+                                                                label={question.answer2}
                                                                 checkedIcon={<ActionFavoriteBorder />}
                                                             />
 
                                                             <RadioButton
                                                             onChange={this.radio3changed.bind(this)}
-                                                                value="0"
-                                                                label="answer 3"
-                                                            />
+                                                                value={question.valueanswer3}
+                                                                label={question.answer3}
+                                                                />
 
                                                             <RadioButton
                                                             onChange={this.radio4changed.bind(this)}
-                                                                value="5"
-                                                                label="answer 4"
-                                                            />
+                                                                value={question.valueanswer4}
+                                                                label={question.answer4}
+                                                                />
                                                             <RadioButton
                                                             onChange={this.radio5changed.bind(this)}
-                                                                value="10"
-                                                                label="answer 5"
-                                                            />
+                                                                value={question.valueanswer5}
+                                                                label={question.answer5}
+                                                                />
                                                         </RadioButtonGroup>
                                                     </CardText>
 
