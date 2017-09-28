@@ -29,7 +29,6 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <div>
       <Route  path='/'  component={App} />
-      <Redirect to='/welcome'/>
       <Route  path='/welcome'  component={Welcome} />
       <Route  path='/test'   component={Question}/>
       <Route  path='/card' component={Cardtest } />

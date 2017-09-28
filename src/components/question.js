@@ -1,9 +1,17 @@
 import React from 'react';
 import '../css/question.css';
 import * as firebase from 'firebase';
-import { Button, Radio, Rate, Icon, Progress, Slider, Card, Tag, Spin, Table, Steps, Row, Col, Tabs } from 'antd';
-const RadioGroup = Radio.Group;
-const RadioButton = Radio.Button;
+import { Table, Row, Col, Spin } from 'antd';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import muitheme from '../muistyle/maintheme';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import { green600, blue300 } from 'material-ui/styles/colors';
+import Toggle from 'material-ui/Toggle';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+import ActionFavorite from 'material-ui/svg-icons/action/done';
+import ActionFavoriteBorder from 'material-ui/svg-icons/social/mood';
+import FlatButton from 'material-ui/FlatButton';
+
 
 export default class question extends React.Component {
 
@@ -14,14 +22,64 @@ export default class question extends React.Component {
         this.state = {
             questions: [],
             score: null,
-            loading: true
+            loading: true,
+            radio: 0,
+            radio2: null,
+            radio3: null,
+            radio4: null,
+            radio5: null,
+            scores : []
         }
 
     }
 
-    radiochanged(event) {
-        this.setState({ score: event.target.value });
-        console.log(`radio checked:${event.target.value}`);
+
+    radio1changed(event) {
+        this.setState({ radio: event.target.value });
+        console.log('radio :' + this.state.radio);
+    }
+
+
+    radio2changed(event) {
+        this.setState({ radio2: event.target.value });
+        console.log(`radio 2 : ` + this.state.radio2);
+    }
+
+
+    radio3changed(event) {
+        this.setState({ radio3: event.target.value });
+        console.log(`radio 3 : ` + this.state.radio3);
+    }
+
+
+    radio4changed(event) {
+        this.setState({ radio4: event.target.defaultSelected });
+        console.log(`radio 4 : ` + this.state.radio4);
+    }
+
+
+    radio5changed(event) {
+        this.setState({ radio5: event.target.defaultSelected });
+        console.log(`radio 5 : ` + this.state.radio5);
+    }
+
+    doSomething()
+    {
+        this.state.questions.map( question => 
+        {
+            if(question.id != this.state.username)
+            {
+                
+                console.log(">>  username Match ");
+                this.setState({ usernameMatch: true });
+            }
+            else
+            {                
+                this.setState({usernameMatch : false});                                
+                console.log(">>  user name not match");     
+            }
+        }
+    );
     }
 
     componentWillMount() {
@@ -59,6 +117,7 @@ export default class question extends React.Component {
         return (
 
             <div className='empty'>
+
                 <div style={{ marginTop: 15, marginBottom: 15 }}>
                     <Spin size="large" spinning={this.state.loading} />
                 </div>
@@ -68,76 +127,58 @@ export default class question extends React.Component {
                             <div key={question.id}>
                                 <div style={{ marginTop: 30 }}>
                                     <Row>
-                                        <Col span={2}></Col>
-                                        <Col span={20}>
-                                            <Card title={question.text}
-                                                extra={<Tag color="#f50">{question.category}</Tag>} style={CardStyle}>
-                                                <Row>
-                                                    <Col span={1}>
-                                                        <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer1}></Radio>
-                                                    </Col>
-                                                    <Col span={1}>
-                                                    </Col>
-                                                    <Col span={15}>
-                                                        <h4 className="card-text"> {question.answer1} </h4>
-                                                    </Col>
-                                                    <Col span={7}>
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col span={1}>
-                                                        <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer2}></Radio>
-                                                    </Col>                                                        <Col span={1}>
-                                                    </Col>
-                                                    <Col span={15}>
-                                                        <h4 className="card-text"> {question.answer2} </h4>
-                                                    </Col>
-                                                    <Col span={7}>
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col span={1}>
-                                                        <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer3}></Radio>
-                                                    </Col>                                                        <Col span={1}>
-                                                    </Col>
-                                                    <Col span={15}>
-                                                        <h4 className="card-text"> {question.answer3} </h4>
-                                                    </Col>
-                                                    <Col span={7}>
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col span={1}>
-                                                        <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer4}></Radio>
-                                                    </Col>                                                        <Col span={1}>
-                                                    </Col>
-                                                    <Col span={15}>
-                                                        <h4 className="card-text"> {question.answer4} </h4>
-                                                    </Col>
-                                                    <Col span={7}>
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col span={1}>
-                                                        <Radio onChange={this.radiochanged.bind(this)} style={radioStyle} value={question.valueanswer5}></Radio>
-                                                    </Col>                                                        <Col span={1}>
-                                                    </Col>
-                                                    <Col span={15}>
-                                                        <h4 className="card-text"> {question.answer5} </h4>
-                                                    </Col>
-                                                    <Col span={7}>
-                                                    </Col>
-                                                </Row>
+                                        <Col span={3}/>
+                                        <Col span={18}>
+                                            <MuiThemeProvider muiTheme={muitheme}>
+                                                <Card style={{ color: blue300 }}>
+                                                    <CardTitle titleColor=" #ffffff" style={{background: " #b30000"}} title={question.text} subtitle={question.category} />
+                                                    <CardText>
+                                                        <RadioButtonGroup name="shipSpeed" defaultSelected="not-selected"
+                                                        onChange={this.radio1changed.bind(this)}>
+                                                            <RadioButton
+                                                                value="-10"
+                                                                label="answer 1"
+                                                                checkedIcon={<ActionFavorite style={{color: "#F44336"}} />}
+                                                            />
+                                                            <RadioButton
+                                                            onChange={this.radio2changed.bind(this)}
+                                                                value="-5"
+                                                                label="answer 2"
+                                                                checkedIcon={<ActionFavoriteBorder />}
+                                                            />
 
-                                            </Card>
-                                            {this.state.score}
+                                                            <RadioButton
+                                                            onChange={this.radio3changed.bind(this)}
+                                                                value="0"
+                                                                label="answer 3"
+                                                            />
+
+                                                            <RadioButton
+                                                            onChange={this.radio4changed.bind(this)}
+                                                                value="5"
+                                                                label="answer 4"
+                                                            />
+                                                            <RadioButton
+                                                            onChange={this.radio5changed.bind(this)}
+                                                                value="10"
+                                                                label="answer 5"
+                                                            />
+                                                        </RadioButtonGroup>
+                                                    </CardText>
+
+                                                </Card>
+                                            </MuiThemeProvider>
                                         </Col>
+                                        <Col span={3}/>
                                     </Row>
                                 </div>
                             </div>
                         )
                     }
                 </ul>
+
+                Score : {this.state.score}
+
             </div>
 
         );

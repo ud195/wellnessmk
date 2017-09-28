@@ -30,7 +30,6 @@ class cardtest extends React.Component {
                     <Col span={6} />
                     <Col span={12}>
                     <Card style={{  color: blue300}}>
-
                         <CardTitle  title="How often do you think you should have been to this event when this... ?" subtitle="Reaction to stimuli" />
                         <CardText>
                             <Row>

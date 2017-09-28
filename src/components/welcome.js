@@ -67,7 +67,7 @@ class welcome extends Component {
   {
     e.preventDefault();
 
-    this.props.history.push('/card');    
+    this.props.history.push('/test');    
   }
 
 
