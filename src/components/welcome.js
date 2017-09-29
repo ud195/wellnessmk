@@ -5,7 +5,7 @@ import ls from 'local-storage';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Card,  CardText} from 'material-ui/Card';
+import { Card,  CardText, CardActions} from 'material-ui/Card';
 import {Link} from 'react-router-dom';
 import {withRouter} from "react-router-dom";
 import {Table, Row, Col} from 'antd';
@@ -113,11 +113,22 @@ class welcome extends Component {
                 <Row>
                   <Col span={6} />
                   <Col span={12}>
-                   <FlatButton  label="Let's get started" secondary = {true} onClick={this.toCardtest.bind(this)}/>
+                   <FlatButton labelStyle={{textAlign : 'right'}} hoverColor={"#28B463"} label="Let's get started" secondary = {true} onClick={this.toCardtest.bind(this)}/>
                   </Col>
                   <Col span={6}/>
                 </Row>
                 </div>
+
+                <Card>
+                  <CardText>
+                    <h3> testing this card out .. </h3>
+                    </CardText>
+                    <CardActions>
+                    <FlatButton style={{textAlign:"center"}} label="Nope that's not me" primary={true} onClick={this.clear.bind(this)} />
+                    <FlatButton labelStyle={{textAlign : 'right'}} hoverColor={"#28B463"} label="Let's get started" secondary = {true} onClick={this.toCardtest.bind(this)}/>
+
+                      </CardActions>
+                  </Card>
                </div>
 
                : 
