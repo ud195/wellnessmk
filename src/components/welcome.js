@@ -89,62 +89,48 @@ class welcome extends Component {
                this.state.namecheck == true  ? 
               
                <div> 
-                 <div style={{marginBottom : 15}}>
-                <Row>
-                 <Col span={2}/>
-                 <Col span={20}> 
-                  <div style={{background : "#FF0000	", textAlign: "center"}}>
+                  <div style={{textAlign: "center"}}>
                     <h3 > welcome  {this.state.name} :D</h3>
                     <br/>
                     <h3> Wellness master Keys program has been designed </h3>
                   </div>
-                 </Col>
-                 <Col span={2} />
-                </Row>
-                </div>
-                <Row>
-                  <Col span={8} />
-                  <Col span={8}>
-                   <FlatButton style={{textAlign:"center"}} label="Nope that's not me" primary={true} onClick={this.clear.bind(this)} />
-                  </Col>
-                  <Col span={8} />
-                </Row>
-                <div style={{marginTop : 15}}>
-                <Row>
-                  <Col span={6} />
-                  <Col span={12}>
-                   <FlatButton labelStyle={{textAlign : 'right'}} hoverColor={"#28B463"} label="Let's get started" secondary = {true} onClick={this.toCardtest.bind(this)}/>
-                  </Col>
-                  <Col span={6}/>
-                </Row>
-                </div>
-
-                <Card>
-                  <CardText>
-                    <h3> testing this card out .. </h3>
-                    </CardText>
-                    <CardActions>
-                    <FlatButton style={{textAlign:"center"}} label="Nope that's not me" primary={true} onClick={this.clear.bind(this)} />
-                    <FlatButton labelStyle={{textAlign : 'right'}} hoverColor={"#28B463"} label="Let's get started" secondary = {true} onClick={this.toCardtest.bind(this)}/>
-
-                      </CardActions>
-                  </Card>
                </div>
 
                : 
 
-               <div> 
-               <h4 style={{color: "#28B463"}}> Hello What is your name ? </h4>
+               <div style={{textAlign: "center"}}> 
+               <h3 style={{color: "#28B463"}}> Hello What is your name ? </h3>
                <TextField  id="name_input" value={this.state.name || ''}
                onChange={this.namechange.bind(this)}/>
-               <br />
-               <FlatButton  label="yep that's me" primary={true} onClick={this.submit.bind(this)} />
                </div> 
             }
           <div>
             </div>
           </div>
             </CardText>
+            <div>
+            {
+              this.state.namecheck == true ?
+              <div>
+            <CardActions style={{alignSelf : "center", textAlign: "center"}} >
+              <div>
+              <FlatButton style={{textAlign:"center"}} label="< Nope that's not me" primary={true} onClick={this.clear.bind(this)} />
+              </div>
+              <div style={{marginTop: 15}}>
+              <FlatButton  label="Let's get started >" secondary = {true} onClick={this.toCardtest.bind(this)}/>
+              </div>
+            </CardActions>
+            </div>
+              :
+              <div>
+              <CardActions style={{alignSelf : "center", textAlign: "center"}} >
+              <div>
+              <FlatButton  label="yep that's me" primary={true} onClick={this.submit.bind(this)} />
+              </div>
+            </CardActions>
+                </div>
+            }
+            </div>
           </Card>
           </Col>
           <Col span={4}/>
