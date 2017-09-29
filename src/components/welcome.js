@@ -80,8 +80,8 @@ class welcome extends Component {
         <MuiThemeProvider muiTheme={muitheme}>
           <div>
             <Row>
-              <Col span= {8} />
-              <Col span = {8}>
+              <Col span= {4} />
+              <Col span = {16}>
           <Card>
             <CardText>
           <div>
@@ -89,10 +89,30 @@ class welcome extends Component {
                this.state.namecheck == true  ? 
               
                <div> 
-               <h3 style={{color : "", textAlign: 'center'}}> welcome  {this.state.name} :D</h3>
-               <br/>
-               <FlatButton  label="Nope that's not me" primary={true} onClick={this.clear.bind(this)} />
-               <FlatButton  label="Let's get started" secondary = {true} onClick={this.toCardtest.bind(this)}/>
+                 <div style={{marginBottom : 15}}>
+                <Row>
+                 <Col span={2}/>
+                 <Col span={20}> 
+                  <div style={{background : "#FF0000	", textAlign: "center"}}>
+                    <h3 > welcome  {this.state.name} :D</h3>
+                    <br/>
+                    <h3> Wellness master Keys program has been designed </h3>
+                  </div>
+                 </Col>
+                 <Col span={2} />
+                </Row>
+                </div>
+                <Row>
+                  <Col span={6} />
+                  <Col span={5}>
+                   <FlatButton centerRipple={true} label="Nope that's not me" primary={true} onClick={this.clear.bind(this)} />
+                  </Col>
+                  <Col span={1} />
+                  <Col span={6}>
+                   <FlatButton  label="Let's get started" secondary = {true} onClick={this.toCardtest.bind(this)}/>
+                  </Col>
+                  <Col span={4}/>
+                </Row>
                </div>
 
                : 
@@ -111,7 +131,7 @@ class welcome extends Component {
             </CardText>
           </Card>
           </Col>
-          <Col span={8}/>
+          <Col span={4}/>
           </Row>
           </div>
         </MuiThemeProvider>

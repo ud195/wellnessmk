@@ -29,6 +29,7 @@ export default class question extends React.Component {
             radio4: null,
             currentQuestiom : null,
             radio5: null,
+            radiox: 0,
             scores : []
         }
 
@@ -54,15 +55,23 @@ export default class question extends React.Component {
 
 
     radio4changed(event) {
-        this.setState({ radio4: event.target.defaultSelected });
+        this.setState({ radio4: event.target.value });
         console.log(`radio 4 : ` + this.state.radio4);
     }
 
 
     radio5changed(event) {
-        this.setState({ radio5: event.target.defaultSelected });
+        this.setState({ radio5: event.target.value });
         console.log(`radio 5 : ` + this.state.radio5);
     }
+
+    radioSelected(event)
+    {
+        console.log('RADIO :: ' + event.target.value);
+        this.state.scores.push(this.state.radiox);
+        console.log('scores' + this.state.scores);
+    }
+
 
     doSomething()
     {
@@ -80,7 +89,7 @@ export default class question extends React.Component {
                 console.log(">>  user name not match");     
             }
         }
-    );
+        );
     }
 
     componentWillMount() {
@@ -135,32 +144,29 @@ export default class question extends React.Component {
                                                     <CardTitle titleColor=" #ffffff" style={{background: " #b30000"}} title={question.text} subtitle={question.category} />
                                                     <CardText>
                                                         <RadioButtonGroup name="shipSpeed" defaultSelected="not-selected"
-                                                        onChange={this.radio1changed.bind(this)}>
+                                                         valueSelected={this.state.radiox}   onChange={this.radioSelected.bind(this)}
+                                                         >
                                                             <RadioButton
                                                                 value={question.valueanswer1}
                                                                 label={question.answer1}
                                                                 checkedIcon={<ActionFavorite style={{color: "#F44336"}} />}
                                                             />
                                                             <RadioButton
-                                                            onChange={this.radio2changed.bind(this)}
                                                                 value={question.valueanswer2}
                                                                 label={question.answer2}
                                                                 checkedIcon={<ActionFavoriteBorder />}
                                                             />
 
                                                             <RadioButton
-                                                            onChange={this.radio3changed.bind(this)}
                                                                 value={question.valueanswer3}
                                                                 label={question.answer3}
                                                                 />
 
                                                             <RadioButton
-                                                            onChange={this.radio4changed.bind(this)}
                                                                 value={question.valueanswer4}
                                                                 label={question.answer4}
                                                                 />
                                                             <RadioButton
-                                                            onChange={this.radio5changed.bind(this)}
                                                                 value={question.valueanswer5}
                                                                 label={question.answer5}
                                                                 />
