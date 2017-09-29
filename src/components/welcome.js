@@ -9,6 +9,9 @@ import { Card,  CardText, CardActions} from 'material-ui/Card';
 import {Link} from 'react-router-dom';
 import {withRouter} from "react-router-dom";
 import {Table, Row, Col} from 'antd';
+import ButtonIconForward from 'material-ui/svg-icons/navigation/arrow-forward';
+import ButtonIconBackward from 'material-ui/svg-icons/navigation/arrow-back';
+
 
 class welcome extends Component {
 
@@ -80,8 +83,8 @@ class welcome extends Component {
         <MuiThemeProvider muiTheme={muitheme}>
           <div>
             <Row>
-              <Col span= {4} />
-              <Col span = {16}>
+              <Col span= {2} />
+              <Col span = {20}>
           <Card>
             <CardText>
           <div>
@@ -90,9 +93,9 @@ class welcome extends Component {
               
                <div> 
                   <div style={{textAlign: "center"}}>
-                    <h3 > welcome  {this.state.name} :D</h3>
+                    <h3 > welcome  {this.state.name},</h3>
                     <br/>
-                    <h3> Wellness master Keys program has been designed </h3>
+                    <h3> Hope you are having a good day.  </h3>
                   </div>
                </div>
 
@@ -114,10 +117,10 @@ class welcome extends Component {
               <div>
             <CardActions style={{alignSelf : "center", textAlign: "center"}} >
               <div>
-              <FlatButton style={{textAlign:"center"}} label="< Nope that's not me" primary={true} onClick={this.clear.bind(this)} />
+              <FlatButton labelStyle="after" icon={<ButtonIconForward />}  label=" Let's get started" secondary = {true} onClick={this.toCardtest.bind(this)}/>
               </div>
               <div style={{marginTop: 15}}>
-              <FlatButton  label="Let's get started >" secondary = {true} onClick={this.toCardtest.bind(this)}/>
+              <FlatButton style={{textAlign:"center"}}  label=" Nope that's not me" primary={true} icon={<ButtonIconBackward />} onClick={this.clear.bind(this)} />
               </div>
             </CardActions>
             </div>
@@ -133,7 +136,7 @@ class welcome extends Component {
             </div>
           </Card>
           </Col>
-          <Col span={4}/>
+          <Col span={2}/>
           </Row>
           </div>
         </MuiThemeProvider>
