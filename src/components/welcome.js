@@ -103,16 +103,21 @@ class welcome extends Component {
                 </Row>
                 </div>
                 <Row>
-                  <Col span={6} />
-                  <Col span={5}>
-                   <FlatButton centerRipple={true} label="Nope that's not me" primary={true} onClick={this.clear.bind(this)} />
+                  <Col span={8} />
+                  <Col span={8}>
+                   <FlatButton style={{textAlign:"center"}} label="Nope that's not me" primary={true} onClick={this.clear.bind(this)} />
                   </Col>
-                  <Col span={1} />
-                  <Col span={6}>
+                  <Col span={8} />
+                </Row>
+                <div style={{marginTop : 15}}>
+                <Row>
+                  <Col span={6} />
+                  <Col span={12}>
                    <FlatButton  label="Let's get started" secondary = {true} onClick={this.toCardtest.bind(this)}/>
                   </Col>
-                  <Col span={4}/>
+                  <Col span={6}/>
                 </Row>
+                </div>
                </div>
 
                : 
