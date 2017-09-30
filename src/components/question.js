@@ -4,93 +4,82 @@ import * as firebase from 'firebase';
 import { Table, Row, Col, Spin } from 'antd';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muitheme from '../muistyle/maintheme';
+import muitheme2 from '../muistyle/secondarytheme';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import { green600, blue300 } from 'material-ui/styles/colors';
+import { green600, blue300, indigo900 } from 'material-ui/styles/colors';
 import Toggle from 'material-ui/Toggle';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import ActionFavorite from 'material-ui/svg-icons/action/done';
 import ActionFavoriteBorder from 'material-ui/svg-icons/social/mood';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import ls from 'local-storage';
+import Divider from 'material-ui/Divider';
+import {withRouter} from "react-router-dom";
 
-
-export default class question extends React.Component {
+class question extends React.Component {
 
 
     constructor(props) {
         super(props);
-
         this.state = {
             questions: [],
-            score: null,
+            score: 0,
             loading: true,
-            radio: 0,
-            radio2: null,
-            radio3: null,
-            radio4: null,
-            currentQuestiom : null,
-            radio5: null,
-            radiox: 0,
-            scores : []
+            validate: false,
+            name : null
         }
 
     }
 
 
-    radio1changed(event) {
-        this.setState({ radio: event.target.value });
-        console.log('radio :' + this.state.radio);
-    }
+
+    submit() {
+        var references = [];
+        var temp = [];
+        var check = false;
+        var scores = [];
+        var t_score = 0;
+
+        console.log(" Count Total : " + this.state.questions.length);
+        this.state.questions.map(function (question) {
+            references.push(question.id);
+            temp.push(this.refs[question.id].state.selected);
+
+            if (temp.indexOf(-100) === -1) {
+                scores.push(this.refs[question.id].state.selected);
+                check = true;
+                console.log("validate : " + this.state.validate);
+                console.log("Scores > " + scores);
+            }
 
 
-    radio2changed(event) {
-        this.setState({ radio2: event.target.value });
-        console.log(`radio 2 : ` + this.state.radio2);
-    }
+        }, this);
 
 
-    radio3changed(event) {
-        this.setState({ radio3: event.target.value });
-        console.log(`radio 3 : ` + this.state.radio3);
-    }
+        if (check === true) {
+            this.setState({ validate: true });
+            scores.map(function (i) {
+                console.log("current val : " + i);
+                t_score = ((t_score) + (i));
+            });
 
+            this.setState({ score: t_score });
 
-    radio4changed(event) {
-        this.setState({ radio4: event.target.value });
-        console.log(`radio 4 : ` + this.state.radio4);
-    }
-
-
-    radio5changed(event) {
-        this.setState({ radio5: event.target.value });
-        console.log(`radio 5 : ` + this.state.radio5);
-    }
-
-    radioSelected(event)
-    {
-        console.log('RADIO :: ' + event.target.value);
-        this.state.scores.push(this.state.radiox);
-        console.log('scores' + this.state.scores);
-    }
-
-
-    doSomething()
-    {
-        this.state.questions.map( question => 
-        {
-            if(question.id != this.state.username)
+            if(ls.get("currentscore") != null )
             {
-                
-                console.log(">>  username Match ");
-                this.setState({ usernameMatch: true });
+                ls.set("currentscore", t_score);
+                console.log(ls.get("currentscore"));
             }
             else
-            {                
-                this.setState({usernameMatch : false});                                
-                console.log(">>  user name not match");     
+            {
+                ls.set("currentscore", 0);
             }
+
+            this.toResult();
         }
-        );
     }
+
 
     componentWillMount() {
         this.DBRef = firebase.database().ref('question').orderByKey().limitToLast(100);
@@ -104,14 +93,52 @@ export default class question extends React.Component {
                 category: snapshot.val().category,
             };
             this.setState({ questions: [question].concat(this.state.questions) });
+            this.setState({ loading: false });
+
         })
 
         console.log(this.state + "DB Mounted");
+
+        ls.set("currentscore", 0);
+
+        if( ls.get("name") != null || ls.get("name") != '')
+        {
+            this.setState({ name: ls.get("name")});
+        }
+        else
+        {
+            this.setState({ name: ':D'});
+        }
     }
 
-    componentDidMount() {
-        this.setState({ loading: false });
-        console.log(this.state.questions);
+    keepchecking() {
+        setTimeout(() => {
+            console.log("Checking..");
+            var references = [];
+            var temp = [];
+            var x = false;
+            var scores = [];
+
+            this.state.questions.map(function (question) {
+                references.push(question.id);
+                temp.push(this.refs[question.id].state.selected);
+
+            }, this);
+
+            console.log(temp);
+            if (temp.indexOf(-100) === -1) {
+                x = true;
+            }
+            else {
+                x = false;
+            }
+
+
+            if (x == true) {
+                this.setState({ validate: true });
+            }
+
+        }, 100);
     }
 
     componentWillUnmount() {
@@ -119,8 +146,14 @@ export default class question extends React.Component {
         console.log("unmounted DB");
     }
 
-    render() {
 
+    toResult()
+    {
+      this.props.history.push('/result');    
+    }
+  
+
+    render() {
         const CardStyle = { background: '#003366', color: '#ffffff' };
         const radioStyle = { display: 'block', height: '40px', lineHeight: '20px', };
 
@@ -128,28 +161,35 @@ export default class question extends React.Component {
 
             <div className='empty'>
 
-                <div style={{ marginTop: 15, marginBottom: 15 }}>
-                    <Spin size="large" spinning={this.state.loading} />
+                <div style={{ textAlign: "center", marginTop: 15, marginBottom: 15 }}>
+                    <Spin tip="loading .." spinning={this.state.loading} />
                 </div>
                 <ul>
                     {
                         this.state.questions.map(question =>
-                            <div key={question.id}>
+                            <div key={question.id}  >
                                 <div style={{ marginTop: 30 }}>
                                     <Row>
-                                        <Col span={3}/>
+                                        <Col span={3} />
                                         <Col span={18}>
                                             <MuiThemeProvider muiTheme={muitheme}>
                                                 <Card style={{ color: blue300 }}>
-                                                    <CardTitle titleColor=" #ffffff" style={{background: " #b30000"}} title={question.text} subtitle={question.category} />
+                                                    <CardTitle titleColor={indigo900} style={{ background: "#ffffff" }}
+                                                        title={question.text} subtitle={question.category} />
+
                                                     <CardText>
-                                                        <RadioButtonGroup name="shipSpeed" defaultSelected="not-selected"
-                                                         valueSelected={this.state.radiox}   onChange={this.radioSelected.bind(this)}
-                                                         >
-                                                            <RadioButton
+                                                        <div style={{ marginBottom: 15 }}>
+                                                            <Divider />
+                                                        </div>
+                                                        <RadioButtonGroup ref={question.id}
+                                                            name="RadioGroup"
+                                                            onChange={this.keepchecking.bind(this)}
+                                                            defaultSelected={-100}
+                                                        >
+                                                            <RadioButton style={{ color: "#F44336" }}
                                                                 value={question.valueanswer1}
                                                                 label={question.answer1}
-                                                                checkedIcon={<ActionFavorite style={{color: "#F44336"}} />}
+                                                                checkedIcon={<ActionFavorite />}
                                                             />
                                                             <RadioButton
                                                                 value={question.valueanswer2}
@@ -160,30 +200,48 @@ export default class question extends React.Component {
                                                             <RadioButton
                                                                 value={question.valueanswer3}
                                                                 label={question.answer3}
-                                                                />
+                                                            />
 
                                                             <RadioButton
                                                                 value={question.valueanswer4}
                                                                 label={question.answer4}
-                                                                />
+                                                            />
                                                             <RadioButton
                                                                 value={question.valueanswer5}
                                                                 label={question.answer5}
-                                                                />
+                                                            />
                                                         </RadioButtonGroup>
                                                     </CardText>
 
                                                 </Card>
                                             </MuiThemeProvider>
                                         </Col>
-                                        <Col span={3}/>
+                                        <Col span={3} />
                                     </Row>
+
                                 </div>
                             </div>
                         )
                     }
                 </ul>
 
+                {
+                    this.state.validate == true ?
+                        <Row>
+                            <div style={{ textAlign: "center", marginTop: 15 }}>
+                                <MuiThemeProvider muiTheme={muitheme2}>
+                                    <RaisedButton secondary={true} label="i'm done" onClick={this.submit.bind(this)} />
+                                </MuiThemeProvider>
+                            </div>
+                        </Row> :
+
+                        <Row>
+                            <div style={{ textAlign: "center", marginTop: 15 }}>
+                                <h3> please choose one answer for each question {this.state.name} </h3>
+                            </div>
+                        </Row>
+
+                }
                 Score : {this.state.score}
 
             </div>
@@ -193,3 +251,5 @@ export default class question extends React.Component {
     }
 
 }
+
+export default withRouter(question);

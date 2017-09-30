@@ -95,7 +95,7 @@ class welcome extends Component {
                   <div style={{textAlign: "center"}}>
                     <h3 > welcome  {this.state.name},</h3>
                     <br/>
-                    <h3> Hope you are having a good day.  </h3>
+                    <h3> Hope you are having are doing well.  </h3>
                   </div>
                </div>
 
@@ -117,7 +117,7 @@ class welcome extends Component {
               <div>
             <CardActions style={{alignSelf : "center", textAlign: "center"}} >
               <div>
-              <FlatButton labelStyle="after" icon={<ButtonIconForward />}  label=" Let's get started" secondary = {true} onClick={this.toCardtest.bind(this)}/>
+              <FlatButton icon={<ButtonIconForward />}  label=" Let's get started" secondary = {true} onClick={this.toCardtest.bind(this)}/>
               </div>
               <div style={{marginTop: 15}}>
               <FlatButton style={{textAlign:"center"}}  label=" Nope that's not me" primary={true} icon={<ButtonIconBackward />} onClick={this.clear.bind(this)} />

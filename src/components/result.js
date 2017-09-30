@@ -8,14 +8,24 @@ import muitheme from '../muistyle/maintheme';
 import Toggle from 'material-ui/Toggle';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import gradientImg from '../gradient.png';
+import ls from 'local-storage';
 
 export default class result extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            disabled: false,
+            score1: 0,
+            score2: 0
+        }
 
-    state = {
-        disabled: false,
-      };
+    }
     
+    componentWillMount()
+    {
+        this.setState({score1 : ls.get("currentscore")});
+    }
 
     render() 
     {
@@ -58,7 +68,7 @@ export default class result extends React.Component {
                         <Row>
                             <Col span={1}/>
                             <Col span= {22}>
-                            <Slider disabled={true} min={24} max={0} marks={marks} />
+                            <Slider disabled={true} min={25} max={50} marks={marks} defaultValue={this.state.score2} />
                             </Col>
                             <Col span={1}/>
                         </Row>
@@ -72,7 +82,7 @@ export default class result extends React.Component {
                         <Row>
                             <Col span={1}/>
                             <Col span= {22}>
-                            <Slider disabled={true} min={0} max={24}  marks={marks2} defaultValue={15} />
+                            <Slider disabled={true} min={0} max={24}  marks={marks2} defaultValue={this.state.score1} />
                             </Col> 
                              <Col span={1}/>
                          </Row>

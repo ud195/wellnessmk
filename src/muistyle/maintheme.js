@@ -5,7 +5,7 @@ import {green500, green600, green700, blue700, blue800, blue900
   
 
   const muiTheme = getMuiTheme({
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: 'Archivo Narrow',
     palette: {
       accent1Color: green500,
       accent2Color: green600,
