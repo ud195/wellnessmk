@@ -237,12 +237,11 @@ class question extends React.Component {
 
                         <Row>
                             <div style={{ textAlign: "center", marginTop: 15 }}>
-                                <h3> please choose one answer for each question {this.state.name} </h3>
+                                <h3 style={{color : "#B71C1C"}}> Please choose one answer for each question {this.state.name} </h3>
                             </div>
                         </Row>
 
                 }
-                Score : {this.state.score}
 
             </div>
 

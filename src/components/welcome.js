@@ -93,9 +93,9 @@ class welcome extends Component {
               
                <div> 
                   <div style={{textAlign: "center"}}>
-                    <h3 > welcome  {this.state.name},</h3>
+                    <h3 > Welcome  {this.state.name},</h3>
                     <br/>
-                    <h3> Hope you are having are doing well.  </h3>
+                    <h3> Hope you are doing well.  </h3>
                   </div>
                </div>
 
