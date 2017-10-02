@@ -9,9 +9,12 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import Question from './components/question';
 import Cardtest from './components/cardTest';
 import QuestionAPI from './components/questionapi';
+import About from './components/about';
+import Help from './components/help';
 import Footer from './components/footer';
 import Result from './components/result';
 import Welcome from './components/welcome';
+import Disclaimer from './components/disclaimer';
 import {hashHistory} from 'react-history';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muitheme from './muistyle/maintheme';
@@ -71,6 +74,9 @@ ReactDOM.render(
       <Route  path='/card' component={Cardtest } />
       <Route  path='/result' component={Result} />
       <Route  path='/admin' component={QuestionAPI}/>
+      <Route  path='/about' component={About}/>
+      <Route  path='/help' component={Help}/>
+      <Route  path='/discl' component={Disclaimer}/>
       <Route  path='' component={Footer}/> 
     </div>
   </Router>

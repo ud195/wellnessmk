@@ -17,14 +17,29 @@ class welcome extends Component {
 
   state={
     name: null,
-    namecheck : false
+    namecheck : false,
+    disclcheck : false
   }
 
   componentWillMount()
   {
     this.state.name = ls.get("name");
+    this.state.disclcheck = ls.get("disclaimer_accepted");    
     this.checkName();
+    console.log("mount ... ");
+    this.checkDisclaimer();
   }
+
+  checkDisclaimer()
+  {
+        
+    if(this.state.disclcheck === true && (this.state.name === null || this.state.name === ''))
+    {
+      ls.set("disclaimer_accepted", false);
+      console.log(ls.get("disclaimer_accepted"));
+    }
+
+  }  
 
   submit()
   {
@@ -36,8 +51,10 @@ class welcome extends Component {
   clear()
   {
     ls.remove("name");
+    ls.set("disclaimer_accepted" , false);
     this.setState({ name : "" });
     this.setState({ namecheck : false});
+
     console.log(" clear" + this.state.name);
   }
 
@@ -62,16 +79,16 @@ class welcome extends Component {
   navigate(e)
   {
     e.preventDefault();
-
-    this.props.history.push('/test');    
+    if(ls.get("disclaimer_accepted") === true)
+    {
+      this.props.history.push('/test');
+    }
+    else
+    {
+      this.props.history.push('/discl');    
+    }
   }
 
-  toCardtest(e)
-  {
-    e.preventDefault();
-
-    this.props.history.push('/test');    
-  }
 
 
 
@@ -93,9 +110,9 @@ class welcome extends Component {
               
                <div> 
                   <div style={{textAlign: "center"}}>
-                    <h3 > Welcome  {this.state.name},</h3>
+                    <h2 > Welcome  {this.state.name},</h2>
                     <br/>
-                    <h3> Hope you are doing well.  </h3>
+                    <h2> Hope you are doing well.  </h2>
                   </div>
                </div>
 
@@ -117,7 +134,7 @@ class welcome extends Component {
               <div>
             <CardActions style={{alignSelf : "center", textAlign: "center"}} >
               <div>
-              <FlatButton icon={<ButtonIconForward />}  label=" Let's get started" secondary = {true} onClick={this.toCardtest.bind(this)}/>
+              <FlatButton icon={<ButtonIconForward />}  label=" Let's get started" secondary = {true} onClick={this.navigate.bind(this)}/>
               </div>
               <div style={{marginTop: 15}}>
               <FlatButton style={{textAlign:"center"}}  label=" Nope that's not me" primary={true} icon={<ButtonIconBackward />} onClick={this.clear.bind(this)} />

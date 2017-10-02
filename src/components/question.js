@@ -90,7 +90,7 @@ class question extends React.Component {
                 answer2: snapshot.val().answer2, answer3: snapshot.val().answer3, answer4: snapshot.val().answer4,
                 answer5: snapshot.val().answer5, valueanswer1: snapshot.val().valueanswer1, valueanswer2: snapshot.val().valueanswer2,
                 valueanswer5: snapshot.val().valueanswer5, valueanswer4: snapshot.val().valueanswer4, valueanswer3: snapshot.val().valueanswer3,
-                category: snapshot.val().category,
+                category: snapshot.val().category, bgcol: snapshot.val().bgcol
             };
             this.setState({ questions: [question].concat(this.state.questions) });
             this.setState({ loading: false });
@@ -174,8 +174,9 @@ class question extends React.Component {
                                         <Col span={18}>
                                             <MuiThemeProvider muiTheme={muitheme}>
                                                 <Card style={{ color: blue300 }}>
-                                                    <CardTitle titleColor={indigo900} style={{ background: "#ffffff" }}
-                                                        title={question.text} subtitle={question.category} />
+                                                    <CardTitle titleColor={indigo900} style={{ background: question.bgcol }}
+                                                        title={question.text} titleStyle={{color: "#ffffff"}}
+                                                        subtitle={question.category} subtitleStyle={{color: "#ffffff"}} />
 
                                                     <CardText>
                                                         <div style={{ marginBottom: 15 }}>

@@ -9,7 +9,8 @@ import {withRouter} from "react-router-dom";
 
 const home = <FontIcon className="material-icons">event_seat</FontIcon>;
 const about = <FontIcon className="material-icons">format_shapes</FontIcon>;
-const creators = <FontIcon className="material-icons">person_pin</FontIcon>;
+const help = <FontIcon className="material-icons">live_help</FontIcon>;
+const admin = <FontIcon className="material-icons">vpn_key</FontIcon>;
 
 class footer extends Component {
 
@@ -17,44 +18,32 @@ class footer extends Component {
     selectedIndex: 0,
   };
 
-  select = (index) => this.setState({selectedIndex: index});
-  
-  toHome(e)
+
+  select(index)
   {
-    e.preventDefault();
-    console.log(this.state.selectedIndex)
-    if(this.state.selectedIndex == 0)
+    console.log("index" + index);
+    if(index === 0)
     {
-      this.props.history.push('/welcome');   
-      
+      console.log("index welcome");      
+      this.props.history.push("/welcome");
     }
-    else if(this.state.selectedIndex == 1)
+    else if(index === 1)
     {
-      this.props.history.push('/result');   
-      
+      console.log("index about");            
+      this.props.history.push("/about");
     }
-    else if(this.state.selectedIndex == 2)
+    else if(index === 2)
     {
-      this.props.history.push('/test');   
-      
+      console.log("index help");            
+      this.props.history.push("/help");
+    }
+    else if(index === 3)
+    {
+      console.log("index admin");            
+      this.props.history.push("/admin");
     }
   }
 
-  selectedAbout()
-  {
-    this.setState({selectedIndex : 2})
-  }
-
-  selectedCreators()
-  {
-    this.setState({selectedIndex : 1})
-  }
-
-  
-  selectedHome()
-  {
-    this.setState({selectedIndex : 0})
-  }
 
   render() {
 
@@ -69,22 +58,27 @@ class footer extends Component {
           </MuiThemeProvider>
           <MuiThemeProvider muiTheme={muitheme2}>
           <div>
-          <BottomNavigation selectedIndex={this.state.selectedIndex} onClick={this.toHome.bind(this)}>
+          <BottomNavigation selectedIndex={this.state.selectedIndex}>
             <BottomNavigationItem
               label="Home"
               icon={home}
-              onClick={this.selectedHome.bind(this)}
-              />
-            <BottomNavigationItem
-              label="Creators"
-              icon={creators}
-              onClick={this.selectedCreators.bind(this)}
+              onClick={() => this.select(0)}
               />
             <BottomNavigationItem
               label="About"
               icon={about}
-              onClick={this.selectedAbout.bind(this)}
-            />
+              onClick={() => this.select(1)}
+              />
+            <BottomNavigationItem
+              label="Help"
+              icon={help}
+              onClick={() => this.select(2)}
+              />
+              <BottomNavigationItem
+              label="Admin"
+              icon={admin}
+              onClick={() => this.select(3)}
+              />
         </BottomNavigation>
         <br/>
         <h3 style={{color: "#4700b3"}}> <FontIcon className="material-icons">copyright</FontIcon> Wellness MasterKeys - A Redefine Life Program 2017  </h3>

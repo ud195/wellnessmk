@@ -192,11 +192,11 @@ export default class questionapi extends React.Component {
 
                             <Col span={8}>
                                 <Radio.Group onChange={this.valueanswer1Change.bind(this)} value="default">
-                                    <Radio.Button value="-10">-10</Radio.Button>
-                                    <Radio.Button value="-5">-5</Radio.Button>
-                                    <Radio.Button value="0">0</Radio.Button>
-                                    <Radio.Button value="5">5</Radio.Button>
-                                    <Radio.Button value="10">10</Radio.Button>
+                                    <Radio.Button value={1}>1</Radio.Button>
+                                    <Radio.Button value={2}>2</Radio.Button>
+                                    <Radio.Button value={3}>3</Radio.Button>
+                                    <Radio.Button value={4}>4</Radio.Button>
+                                    <Radio.Button value={5}>5</Radio.Button>
                                 </Radio.Group>
                             </Col>
                         </Row>
@@ -215,11 +215,11 @@ export default class questionapi extends React.Component {
 
                                 <Col span={8}>
                                     <Radio.Group onChange={this.valueanswer2Change.bind(this)} value="default">
-                                        <Radio.Button value="-10">-10</Radio.Button>
-                                        <Radio.Button value="-5">-5</Radio.Button>
-                                        <Radio.Button value="0">0</Radio.Button>
-                                        <Radio.Button value="5">5</Radio.Button>
-                                        <Radio.Button value="10">10</Radio.Button>
+                                    <Radio.Button value={1}>1</Radio.Button>
+                                    <Radio.Button value={2}>2</Radio.Button>
+                                    <Radio.Button value={3}>3</Radio.Button>
+                                    <Radio.Button value={4}>4</Radio.Button>
+                                    <Radio.Button value={5}>5</Radio.Button>
                                     </Radio.Group>
                                 </Col>
                             </Row>
@@ -239,11 +239,11 @@ export default class questionapi extends React.Component {
 
                                 <Col span={8}>
                                     <Radio.Group onChange={this.valueanswer3Change.bind(this)} value="default">
-                                        <Radio.Button value="-10">-10</Radio.Button>
-                                        <Radio.Button value="-5">-5</Radio.Button>
-                                        <Radio.Button value="0">0</Radio.Button>
-                                        <Radio.Button value="5">5</Radio.Button>
-                                        <Radio.Button value="10">10</Radio.Button>
+                                    <Radio.Button value={1}>1</Radio.Button>
+                                    <Radio.Button value={2}>2</Radio.Button>
+                                    <Radio.Button value={3}>3</Radio.Button>
+                                    <Radio.Button value={4}>4</Radio.Button>
+                                    <Radio.Button value={5}>5</Radio.Button>
                                     </Radio.Group>
                                 </Col>
                             </Row>
@@ -263,11 +263,11 @@ export default class questionapi extends React.Component {
 
                                 <Col span={8}>
                                     <Radio.Group onChange={this.valueanswer4Change.bind(this)} value="default">
-                                        <Radio.Button value="-10">-10</Radio.Button>
-                                        <Radio.Button value="-5">-5</Radio.Button>
-                                        <Radio.Button value="0">0</Radio.Button>
-                                        <Radio.Button value="5">5</Radio.Button>
-                                        <Radio.Button value="10">10</Radio.Button>
+                                    <Radio.Button value={1}>1</Radio.Button>
+                                    <Radio.Button value={2}>2</Radio.Button>
+                                    <Radio.Button value={3}>3</Radio.Button>
+                                    <Radio.Button value={4}>4</Radio.Button>
+                                    <Radio.Button value={5}>5</Radio.Button>
                                     </Radio.Group>
                                 </Col>
                             </Row>
@@ -287,11 +287,11 @@ export default class questionapi extends React.Component {
 
                                 <Col span={8}>
                                     <Radio.Group onChange={this.valueanswer5Change.bind(this)} value="default">
-                                        <Radio.Button value="-10">-10</Radio.Button>
-                                        <Radio.Button value="-5">-5</Radio.Button>
-                                        <Radio.Button value="0">0</Radio.Button>
-                                        <Radio.Button value="5">5</Radio.Button>
-                                        <Radio.Button value="10">10</Radio.Button>
+                                    <Radio.Button value={1}>1</Radio.Button>
+                                    <Radio.Button value={2}>2</Radio.Button>
+                                    <Radio.Button value={3}>3</Radio.Button>
+                                    <Radio.Button value={4}>4</Radio.Button>
+                                    <Radio.Button value={5}>5</Radio.Button>
                                     </Radio.Group>
                                 </Col>
                             </Row>
